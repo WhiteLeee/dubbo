@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * UserServiceImpl
@@ -17,7 +18,7 @@ import java.util.List;
  * @website www.ittimeline.net
  * @since JDK8u192
  */
-@Service //基于注解暴露服务
+@Service(timeout = 5000) //基于注解暴露服务 服务提供方设置超时
 @Component
 public class UserServiceImpl implements UserService {
 
@@ -44,6 +45,13 @@ public class UserServiceImpl implements UserService {
 
         userAddressList.add(xiaoshitou);
         userAddressList.add(tony);
+
+        //测试超时，这里sleep 8秒钟
+        try {
+            TimeUnit.SECONDS.sleep(8000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
         return userAddressList;
