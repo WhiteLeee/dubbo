@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.3.xsd
+
+">
+
+    <context:component-scan base-package="net.ittimeline.java.dubbo.spring"/>
+
+    <!-- 指定当前服务的名字(同样的服务名字相同，不要和别的服务同名)-->
+    <dubbo:application name="dubbo-spring-consumer"/>
+    <!--指定注册中心的配置-->
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>
+
+    <!--指定服务提供者和服务消费者通讯规则(协议+端口)-->
+    <dubbo:protocol name="dubbo" port="20080"/>
+
+    <!--声明需要调用的远程服务的接口，生成远程服务的代理-->
+    <dubbo:reference interface="net.ittimeline.java.dubbo.spring.api.service.UserService" id="userService"/>
+
+
+    <!--配置连接Monitor 自动发现-->
+    <!--<dubbo:monitor protocol="registry"/>-->
+
+</beans>
