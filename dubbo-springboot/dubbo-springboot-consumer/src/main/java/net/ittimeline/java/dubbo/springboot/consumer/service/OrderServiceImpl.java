@@ -23,8 +23,11 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 通过@Reference注解远程调用UserService服务
+     * check=false即可以关闭启动时检查
+     * retries=3 超时后重试3次，如果超时的服务部署了多个，会轮询调用
+     * version=2.0.0 这里指定调用user service的版本是2.0.0，如果不想区分版本，随机调用服务提供方的任意版本，可以使用*匹配
      */
-    @Reference(check = false,retries = 3) //check=false即可以关闭启动时检查 ,retries=3 超时后重试3次，如果超时的服务部署了多个，会轮训调用
+    @Reference(check = false,retries = 3,version = "*")
     private UserService userService;
 
     @Override

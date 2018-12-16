@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    status用来指定lo4j2本身的日志级别
+    monitorinterval用于指定log4j2自动重新配置的监测间隔时间，单位是s,最小是5s
+-->
+<Configuration status="WARN" monitorinterval="5">
+    <!--定义属性配置-->
+    <properties>
+        <!--定义日志输出格式-->
+        <property name="log_format">%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level  [%l] - %msg%n</property>
+    </properties>
+
+
+    <Appenders>
+        <!--日志实现控制台输出-->
+        <Console name="Console" target="SYSTEM_OUT">
+            <!--设置日志输出的格式-->
+            <PatternLayout pattern="${log_format}"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <!--
+            log4j2的日志级别从低到高为 ALL<TRACE<DEBUG<INFO<WARN<ERROR<FATAL<OFF
+            程序会打印高于或等于所设置级别的日志，设置的日志等级越高，打印的日志就越少
+        -->
+        <!--log4j默认只会输出控制台error级别的日志，这里改为info 也就意味着会打印 INFO,WARN,ERROR,FATAT和OFF级别的日志-->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
