@@ -24,7 +24,7 @@ public class OrderServiceImpl implements OrderService {
     /**
      * 通过@Reference注解远程调用UserService服务
      */
-    @Reference(check = false) //check=false即可以关闭启动时检查
+    @Reference(check = false,retries = 3) //check=false即可以关闭启动时检查 ,retries=3 超时后重试3次，如果超时的服务部署了多个，会轮训调用
     private UserService userService;
 
     @Override

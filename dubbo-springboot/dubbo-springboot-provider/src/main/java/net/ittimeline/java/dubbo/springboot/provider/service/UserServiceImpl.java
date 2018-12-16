@@ -4,6 +4,8 @@ package net.ittimeline.java.dubbo.springboot.provider.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import net.ittimeline.java.dubbo.springboot.model.UserAddress;
 import net.ittimeline.java.dubbo.springboot.api.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,14 +19,20 @@ import java.util.concurrent.TimeUnit;
  * @create 2018-12-15 13:55
  * @website www.ittimeline.net
  * @since JDK8u192
- */
-@Service(timeout = 5000) //基于注解暴露服务 服务提供方设置超时
+ */@Service(timeout = 5000) //基于注解暴露服务 服务提供方设置超时5000秒
+
 @Component
 public class UserServiceImpl implements UserService {
 
+     private static final Logger LOGGER= LogManager.getLogger();
 
     @Override
     public List<UserAddress> getUserAddressList(String userId) {
+
+        LOGGER.info("execute get user address list method");
+      //  LOGGER.info("execute get user address list method with dubbo.protocol.port=20080");
+      //  LOGGER.info("execute get user address list method with dubbo.protocol.port=20081");
+        LOGGER.info("execute get user address list method with dubbo.protocol.port=20082");
 
         //ignore userId
 
