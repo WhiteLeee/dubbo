@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * UserServiceImpl
@@ -19,8 +18,9 @@ import java.util.concurrent.TimeUnit;
  * @create 2018-12-15 13:55
  * @website www.ittimeline.net
  * @since JDK8u192
- */@Service(timeout = 5000,version = "1.0.0") //基于注解暴露服务 服务提供方设置超时5000秒
-
+ */
+//基于注解暴露服务 服务提供方设置超时5000秒
+@Service(timeout = 5000,version = "1.0.0")
 @Component
 public class UserServiceImpl implements UserService {
 
